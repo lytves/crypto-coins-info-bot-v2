@@ -9,7 +9,7 @@ from emoji import emojize
 from cryptocoinsinfo.config import *
 from cryptocoinsinfo.error_info_messages import *
 
-locale.setlocale(locale.LC_NUMERIC, 'de_DE')
+locale.setlocale(locale.LC_NUMERIC, 'es_ES.utf8')
 
 # start logging to the file of current directory or º it to console
 # logging.basicConfig(level=logging.INFO,
