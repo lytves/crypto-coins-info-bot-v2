@@ -2,7 +2,7 @@
 
 [@CryptoCoinsInfoBot](https://t.me/CryptoCoinsInfoBot "@CryptoCoinsInfoBot") - enjoy it!
 
-This is a simple version of a Telegram Bot, had been used [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot "pyTelegramBotAPI Library GitHub Repository"), you can use *start_polling* or *webhook* updates methods for recieve the messages (see cryptocoinsinfobot.py code)
+This is a simple version of a Telegram Bot, had been used [python-telegram-bot library](https://github.com/python-telegram-bot/python-telegram-bot "python-telegram-bot library Library GitHub Repository"), you can use *start_polling* or *webhook* updates methods for recieve the messages (see cryptocoinsinfobot.py code)
 
 For use unicode emojis had been used [Emoji Library](https://github.com/carpedm20/emoji "Emoji for Python.")
 
