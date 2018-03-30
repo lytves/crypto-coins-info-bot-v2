@@ -3,7 +3,7 @@ import json
 import logging
 from logging.handlers import TimedRotatingFileHandler
 
-from cryptocoinsinfo.utils import command_info, message_info, text_simple
+from cryptocoinsinfo.utils import command_info, message_info, text_simple, module_logger
 from cryptocoinsinfo.reply_markups import *
 from cryptocoinsinfo.config import *
 

@@ -13,7 +13,7 @@ locale.setlocale(locale.LC_NUMERIC, 'en_GB.utf8')
 
 # start logging to the file of current directory or º it to console
 # logging.basicConfig(level=logging.INFO,
-#                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+#                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 # module_logger = logging.getLogger(__name__)
 
 # start logging to the file with log rotation at midnight of each day
@@ -227,13 +227,14 @@ def parse_api_cryptocomparejson(message_ticker):
                                 price_usd = '$' + str(locale.format("%.6f", price_usd_float, True)).rstrip('0')
 
                             # for cut paddind zeros at the end of the price
-                            price_usd_float_format = "%.2f" if price_usd_float >= 1.0 else "%.6f"
+                            # price_usd_float_format = "%.2f" if price_usd_float >= 1.0 else "%.6f"
                             # price_usd = '$' + str(locale.format(price_usd_float_format, price_usd_float, True)).rstrip('0').rstrip('.')
 
                         # current price in BTC (if the ticket is not BTC)
                         if str(value['Symbol']) != 'BTC':
-                            if ticker_raw['BTC']['PRICE']:
-                                price_btc = ' (' + str(locale.format('%.8f', float(ticker_raw['BTC']['PRICE']), True)) + ' BTC)'
+                            if 'BTC' in ticker_raw.items():
+                                if ticker_raw['BTC']['PRICE']:
+                                    price_btc = ' (' + str(locale.format('%.8f', float(ticker_raw['BTC']['PRICE']), True)) + ' BTC)'
 
                         # 24 hours price change with emoji
                         if ticker_display['USD']['CHANGEPCT24HOUR']:
@@ -278,6 +279,8 @@ def msg_title_parse_api(ticker_name, ticker_symbol):
 
     # is a strange case of token with *, which telegram markdown is provoking an error
     if ticker_symbol.find('*') >= 0:
+        print('ticker_name',ticker_name)
+        print('ticker_symbol',ticker_symbol)
         ticker_symbol = re.sub(r'[\*]+', '', ticker_symbol)
 
     # re.sub(...) is to cut all symbols

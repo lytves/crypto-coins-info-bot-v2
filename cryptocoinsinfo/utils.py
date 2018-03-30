@@ -1,25 +1,6 @@
-import logging
-from logging.handlers import TimedRotatingFileHandler
-
 from cryptocoinsinfo.reply_markups import *
 from cryptocoinsinfo.config import *
-from cryptocoinsinfo.parse_apis import parse_api_coinmarketcapjson, parse_api_cryptocomparejson
-
-# start logging to the file of current directory or print it to console
-# logging.basicConfig(level=logging.INFO,
-#                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-# module_logger = logging.getLogger(__name__)
-
-# start logging to the file with log rotation at midnight of each day
-formatter = logging.Formatter('%(asctime)s %(name)s %(levelname)s %(message)s')
-handler = TimedRotatingFileHandler(os.path.dirname(os.path.realpath(__file__)) + '/../cryptocoinsinfobot.log',
-                                   when='midnight',
-                                   backupCount=10)
-handler.setFormatter(formatter)
-module_logger = logging.getLogger(__name__)
-module_logger.addHandler(handler)
-module_logger.setLevel(logging.INFO)
-# end of log section
+from cryptocoinsinfo.parse_apis import parse_api_coinmarketcapjson, parse_api_cryptocomparejson, module_logger
 
 
 # the functions for logging handlers
@@ -33,9 +14,6 @@ def command_info(update):
             usr_name += ' ' + update.message.from_user.last_name
         if update.message.from_user.username:
             usr_name += ' (@' + update.message.from_user.username + ')'
-
-        # old use of this user_name, bcz of an errorr in logs
-        # us_first_name = str(update.message.from_user.first_name) if update.message.from_user.first_name else 'None'
 
         us_chat_id = str(update.message.from_user.id) if update.message.from_user.id else 'None'
 
