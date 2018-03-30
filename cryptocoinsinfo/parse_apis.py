@@ -185,8 +185,6 @@ def parse_api_cryptocomparejson(message_ticker):
 
     elif cryptocomparejson and 'Response' in cryptocomparejson and cryptocomparejson['Response'] == 'Success':
 
-        # print("parse_api_cryptocomparejson")
-
         # find the ticker and parsing of jsonfile for show data
         for key, value in cryptocomparejson['Data'].items():
 
@@ -279,8 +277,7 @@ def msg_title_parse_api(ticker_name, ticker_symbol):
 
     # is a strange case of token with *, which telegram markdown is provoking an error
     if ticker_symbol.find('*') >= 0:
-        print('ticker_name',ticker_name)
-        print('ticker_symbol',ticker_symbol)
+
         ticker_symbol = re.sub(r'[\*]+', '', ticker_symbol)
 
     # re.sub(...) is to cut all symbols
