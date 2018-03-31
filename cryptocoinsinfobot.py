@@ -37,10 +37,8 @@ def main():
     # for use start_webhook updates method,
     # see https://github.com/python-telegram-bot/python-telegram-bot/wiki/Webhooks
     # updater.start_webhook(listen='127.0.0.1', port=5002, url_path=TOKEN_BOT)
-    # updater.bot.set_webhook(url='https://51.15.75.117/' + TOKEN_BOT,
+    # updater.bot.set_webhook(url='https://0.0.0.0/' + TOKEN_BOT,
     #                   certificate=open('/etc/nginx/PUBLIC.pem', 'rb'))
-
-# TODO: check user language_code and set it for each user, hmm.. in which file?
 
 
 if __name__ == '__main__':
