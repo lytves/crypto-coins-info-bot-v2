@@ -29,8 +29,11 @@ def main():
     job_queue.run_repeating(download_api_coinslists_handler, TIME_INTERVAL, 10, context='coinmarketcap')
     job_queue.run_repeating(download_api_coinslists_handler, TIME_INTERVAL, 40, context='cryptocompare')
 
-    # for use start_polling() updates method
+    # Start the Bot start_polling() method
+    # Run the bot until the user presses Ctrl-C or the process receives SIGINT,
+    # SIGTERM or SIGABRT
     updater.start_polling()
+    updater.idle()
 
     # for use start_webhook updates method,
     # see https://github.com/python-telegram-bot/python-telegram-bot/wiki/Webhooks
