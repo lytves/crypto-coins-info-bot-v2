@@ -1,5 +1,3 @@
-import logging
-from logging.handlers import TimedRotatingFileHandler
 import requests
 import locale
 import re
@@ -8,24 +6,9 @@ from emoji import emojize
 
 from cryptocoinsinfo.config import *
 from cryptocoinsinfo.error_info_messages import *
+from cryptocoinsinfo.utils import module_logger
 
 locale.setlocale(locale.LC_NUMERIC, 'en_GB.utf8')
-
-# start logging to the file of current directory or º it to console
-# logging.basicConfig(level=logging.INFO,
-#                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-# module_logger = logging.getLogger(__name__)
-
-# start logging to the file with log rotation at midnight of each day
-formatter = logging.Formatter('%(asctime)s %(name)s %(levelname)s %(message)s')
-handler = TimedRotatingFileHandler(os.path.dirname(os.path.realpath(__file__)) + '/../cryptocoinsinfobot.log',
-                                   when='midnight',
-                                   backupCount=10)
-handler.setFormatter(formatter)
-module_logger = logging.getLogger(__name__)
-module_logger.addHandler(handler)
-module_logger.setLevel(logging.INFO)
-# end of log section
 
 
 def parse_api_coinmarketcapjson(message_ticker):

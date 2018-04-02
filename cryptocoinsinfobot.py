@@ -1,12 +1,10 @@
-import os
-import logging
-from logging.handlers import TimedRotatingFileHandler
-
 from telegram.ext import Updater
 from telegram.ext import CommandHandler, MessageHandler, Filters
 
-from cryptocoinsinfo.handlers import filter_text_input, error, start, download_api_coinslists_handler, module_logger
+from cryptocoinsinfo.handlers import filter_text_input, error, start, download_api_coinslists_handler
+from cryptocoinsinfo.utils import module_logger
 from cryptocoinsinfo.config import TOKEN_BOT, TIME_INTERVAL
+
 
 def main():
     module_logger.info("Start the @CryptoCoinsInfoBot bot!")

@@ -1,6 +1,24 @@
+import logging
+from logging.handlers import TimedRotatingFileHandler
+
 from cryptocoinsinfo.reply_markups import *
 from cryptocoinsinfo.config import *
-from cryptocoinsinfo.parse_apis import parse_api_coinmarketcapjson, parse_api_cryptocomparejson, module_logger
+
+# start logging to the file of current directory or º it to console
+# logging.basicConfig(level=logging.INFO,
+#                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+# module_logger = logging.getLogger(__name__)
+
+# start logging to the file with log rotation at midnight of each day
+formatter = logging.Formatter('%(asctime)s %(name)s %(levelname)s %(message)s')
+handler = TimedRotatingFileHandler(os.path.dirname(os.path.realpath(__file__)) + '/../cryptocoinsinfobot.log',
+                                   when='midnight',
+                                   backupCount=10)
+handler.setFormatter(formatter)
+module_logger = logging.getLogger(__name__)
+module_logger.addHandler(handler)
+module_logger.setLevel(logging.INFO)
+# end of log section
 
 
 # the functions for logging handlers
@@ -42,6 +60,8 @@ def message_info(update):
 
 # work with a user's message from update
 def text_simple(usr_msg_text):
+
+    from cryptocoinsinfo.parse_apis import parse_api_coinmarketcapjson, parse_api_cryptocomparejson
 
     # for always work with a text in a uppercase
     usr_msg_text = usr_msg_text.upper()
