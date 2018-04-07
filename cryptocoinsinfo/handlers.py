@@ -1,12 +1,15 @@
 import requests
 import json
 
+from telegram.ext.dispatcher import run_async
+
 from cryptocoinsinfo.utils import command_info, message_info, text_simple, module_logger
 from cryptocoinsinfo.reply_markups import *
 from cryptocoinsinfo.config import *
 
 
 # send a start message, command handler
+@run_async
 def start(bot, update):
 
     command_info(update)
@@ -25,6 +28,7 @@ def start(bot, update):
 
 
 # bot's update error handler
+@run_async
 def error(bot, update, error_msg):
     module_logger.warning('Update caused error "%s"', error)
 
@@ -32,6 +36,7 @@ def error(bot, update, error_msg):
 
 
 # text messages handler for send user keyboard for all users
+@run_async
 def filter_text_input(bot, update):
 
     message_info(update)
@@ -65,6 +70,7 @@ def filter_text_input(bot, update):
 
 
 # a handler for download the lists of coins from API agregators by job_queue of telegram.ext
+@run_async
 def download_api_coinslists_handler(bot, job):
     """
     the function to download API from the agregators sites to local file
