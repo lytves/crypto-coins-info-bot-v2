@@ -30,8 +30,8 @@ def main():
     # add tasks to parse APIs from sites-aggregators to local JSON-files, is used time interval, coz
     # APIs (CMC) have pricing plans with limits
     job_queue = updater.job_queue
-    job_queue.run_repeating(download_api_coinslists_handler, TIME_INTERVAL, 10, context='coinmarketcap')
-    job_queue.run_repeating(download_api_coinslists_handler, TIME_INTERVAL, 40, context='cryptocompare')
+    job_queue.run_repeating(download_api_coinslists_handler, TIME_INTERVAL, 5, context='coinmarketcap')
+    job_queue.run_repeating(download_api_coinslists_handler, TIME_INTERVAL, 10, context='cryptocompare')
 
     # Start the Bot start_polling() method
     # Run the bot until the user presses Ctrl-C or the process receives SIGINT,

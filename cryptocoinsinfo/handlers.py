@@ -123,10 +123,10 @@ def download_api_coinslists_handler(bot, job):
 
             # save a json to variable
             if job.context == 'coinmarketcap':
-                jsonfiles.change_coinmarketcapjson(response_dict_list['data'])
+                jsonfiles.update_cmc_json(response_dict_list)
 
             elif job.context == 'cryptocompare':
-                jsonfiles.change_cryptocomparejson(response_dict_list)
+                jsonfiles.update_cc_json(response_dict_list)
 
     else:
         module_logger.error('%s not successfully response', job.context)

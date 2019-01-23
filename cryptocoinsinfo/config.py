@@ -28,15 +28,15 @@ FILE_JSON_CRYPTOCOMPARE = os.path.dirname(os.path.realpath(__file__)) + '/crypto
 
 class JSONFiles:
     def __init__(self):
-        self.coinmarketcapjson = []
+        self.coinmarketcapjson = {}
         self.cryptocomparejson = {}
 
-    def change_coinmarketcapjson(self, json1):
-        assert isinstance(json1, list)
+    def update_cmc_json(self, json1):
+        assert isinstance(json1, dict)
         self.coinmarketcapjson = json1
         return json1
 
-    def change_cryptocomparejson(self, json2):
+    def update_cc_json(self, json2):
         assert isinstance(json2, dict)
         self.cryptocomparejson = json2
         return json2
