@@ -40,10 +40,9 @@ def parse_api_coinmarketcapjson(message_ticker):
     #             module_logger.error('api.coinmarketcap.com! bad json file to read: %s', coinmarketcapjson)
     #             msg_parse_api += error_information()
 
-    if coinmarketcapjson and 'error' in coinmarketcapjson:
+    if not coinmarketcapjson:
 
-        error = coinmarketcapjson['error']
-        module_logger.error('api.coinmarketcap.com! Error message: %s', error)
+        module_logger.error('api.coinmarketcap.com! Error message: there is no coinmarketcap json file')
         msg_parse_api += error_information()
 
         # TODO send a message to the admin (a chat, a group, a channel)
@@ -72,7 +71,6 @@ def parse_api_coinmarketcapjson(message_ticker):
                 # current price
                 if ticker['quote']['USD']['price']:
                     price_usd_float = float(ticker['quote']['USD']['price'])
-                    print(ticker['quote']['USD']['price'])
 
                     # for cut paddind zeros at the end of the price
                     if price_usd_float >= 1.0:
