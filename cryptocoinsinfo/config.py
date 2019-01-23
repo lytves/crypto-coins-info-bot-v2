@@ -8,8 +8,6 @@ YOUR_TELEGRAM_ALIAS = 'put_here'
 # do APIs requests with pause
 TIME_INTERVAL = 3600
 
-URL_COINMARKET_SIMPLE_API = "https://api.coinmarketcap.com/v1/ticker/{}"
-
 # old CoinMarketCap public API
 # COINMARKET_API_URL_COINLIST = 'https://api.coinmarketcap.com/v1/ticker/?limit=0'
 
