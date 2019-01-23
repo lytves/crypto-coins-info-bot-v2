@@ -24,7 +24,11 @@ def main():
     text_update_handler = MessageHandler(Filters.text, filter_text_input)
     dispatcher.add_handler(text_update_handler)
 
-    # here put the job for the bot
+    #
+    # *** here put the job for the bot ***
+    #
+    # add tasks to parse APIs from sites-aggregators to local JSON-files, is used time interval, coz
+    # APIs (CMC) have pricing plans with limits
     job_queue = updater.job_queue
     job_queue.run_repeating(download_api_coinslists_handler, TIME_INTERVAL, 10, context='coinmarketcap')
     job_queue.run_repeating(download_api_coinslists_handler, TIME_INTERVAL, 40, context='cryptocompare')

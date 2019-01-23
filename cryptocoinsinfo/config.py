@@ -5,11 +5,20 @@ TOKEN_BOT = 'put_here'
 
 YOUR_TELEGRAM_ALIAS = 'put_here'
 
-TIME_INTERVAL = 150
+# do APIs requests with pause
+TIME_INTERVAL = 3600
 
 URL_COINMARKET_SIMPLE_API = "https://api.coinmarketcap.com/v1/ticker/{}"
 
-COINMARKET_API_URL_COINLIST = 'https://api.coinmarketcap.com/v1/ticker/?limit=0'
+# old CoinMarketCap public API
+# COINMARKET_API_URL_COINLIST = 'https://api.coinmarketcap.com/v1/ticker/?limit=0'
+
+# new pro API
+CMC_API_KEY = "put_here"
+COINMARKET_API_URL_COINLIST = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=5000' \
+                              '&CMC_PRO_API_KEY={}'
+
+# CryptoCompare API
 CRYPTOCOMPARE_API_URL_COINLIST = 'https://min-api.cryptocompare.com/data/all/coinlist'
 CRYPTOCOMPARE_API_URL_PRICEMULTIFULL = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms={}&tsyms=BTC,USD'
 

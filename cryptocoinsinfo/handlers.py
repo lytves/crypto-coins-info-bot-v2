@@ -87,7 +87,7 @@ def download_api_coinslists_handler(bot, job):
     url = ''
 
     if job.context == 'coinmarketcap':
-        url = COINMARKET_API_URL_COINLIST
+        url = COINMARKET_API_URL_COINLIST.format(CMC_API_KEY)
         fileoutputname = FILE_JSON_COINMARKET
 
     elif job.context == 'cryptocompare':
@@ -102,11 +102,12 @@ def download_api_coinslists_handler(bot, job):
     if response.status_code == requests.codes.ok:
 
         # check if one of the APIs response is an error
-        if ('error' in response_dict_list) or (('Response' in response_dict_list) and (response_dict_list['Response'] is 'Error')):
+        if ((response_dict_list['status']['error_code'] and response_dict_list['status']['error_code'] != 0) or\
+                (('Response' in response_dict_list) and response_dict_list['Response'] is 'Error')):
 
             error_msg = ''
             if job.context == 'coinmarketcap':
-                error_msg = response_dict_list['error']
+                error_msg = response_dict_list['status']['error_message']
 
             elif job.context == 'cryptocompare':
                 error_msg = response_dict_list['Message']
@@ -114,7 +115,7 @@ def download_api_coinslists_handler(bot, job):
             module_logger.error('%s error message: %s' % (job.context, error_msg))
 
         else:
-            module_logger.info('Success download a coinslist from %s', job.context)
+            module_logger.info('Success download the coinslist from %s', job.context)
 
             with open(fileoutputname, 'w') as outfile:
                 json.dump(response_dict_list, outfile)
@@ -122,7 +123,7 @@ def download_api_coinslists_handler(bot, job):
 
             # save a json to variable
             if job.context == 'coinmarketcap':
-                jsonfiles.change_coinmarketcapjson(response_dict_list)
+                jsonfiles.change_coinmarketcapjson(response_dict_list['data'])
 
             elif job.context == 'cryptocompare':
                 jsonfiles.change_cryptocomparejson(response_dict_list)
