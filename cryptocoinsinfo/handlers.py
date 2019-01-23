@@ -102,7 +102,7 @@ def download_api_coinslists_handler(bot, job):
     if response.status_code == requests.codes.ok:
 
         # check if one of the APIs response is an error
-        if ((response_dict_list['status']['error_code'] and response_dict_list['status']['error_code'] != 0) or\
+        if (('status' in response_dict_list and response_dict_list['status']['error_code'] != 0) or
                 (('Response' in response_dict_list) and response_dict_list['Response'] is 'Error')):
 
             error_msg = ''
