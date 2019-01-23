@@ -19,7 +19,9 @@ COINMARKET_API_URL_COINLIST = 'https://pro-api.coinmarketcap.com/v1/cryptocurren
                               '&CMC_PRO_API_KEY={}'
 
 # CryptoCompare API
+# is used to search up if requested coin is on the CC coinlist
 CRYPTOCOMPARE_API_URL_COINLIST = 'https://min-api.cryptocompare.com/data/all/coinlist'
+# is used to parse prices of the requested coin
 CRYPTOCOMPARE_API_URL_PRICEMULTIFULL = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms={}&tsyms=BTC,USD'
 
 FILE_JSON_COINMARKET = os.path.dirname(os.path.realpath(__file__)) + '/coinmarketcoins.json'

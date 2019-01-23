@@ -49,7 +49,7 @@ def message_info(update):
         if update.message.from_user.username:
             usr_name += ' (@' + update.message.from_user.username + ')'
 
-        # old use of this user_name, bcz of an errorr in logs
+        # old use of this user_name, bcz of an error in logs
         # us_first_name = str(update.message.from_user.first_name) if update.message.from_user.first_name else 'None'
 
         us_chat_id = str(update.message.from_user.id) if update.message.from_user.id else 'None'
