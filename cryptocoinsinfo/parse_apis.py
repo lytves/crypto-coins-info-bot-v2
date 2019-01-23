@@ -8,12 +8,12 @@ from cryptocoinsinfo.config import *
 from cryptocoinsinfo.error_info_messages import *
 from cryptocoinsinfo.utils import module_logger
 
-locale.setlocale(locale.LC_NUMERIC, 'en_GB.utf8')
+locale.setlocale(locale.LC_NUMERIC, 'en_GB')
 
 
 def parse_api_coinmarketcapjson(message_ticker):
     """
-    the function to download API from the agregators sites to local file
+    the function to download API from the aggregators sites to local file
 
     :param  message_ticker: a message with a ticker from user's request
     :type   message_ticker: str
