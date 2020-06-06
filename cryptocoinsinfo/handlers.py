@@ -1,6 +1,8 @@
 import requests
 import json
 
+from telegram import Update
+from telegram.ext import CallbackContext
 from telegram.ext.dispatcher import run_async
 
 from cryptocoinsinfo.utils import command_info, message_info, text_simple, module_logger
@@ -10,7 +12,7 @@ from cryptocoinsinfo.config import *
 
 # send a start message, command handler
 @run_async
-def start(bot, update):
+def start(update: Update, context: CallbackContext):
 
     command_info(update)
 
@@ -24,25 +26,25 @@ def start(bot, update):
                     '\n\n🇬🇧 Hello, ' + usr_name + '. I am your Crypto Coins Info Bot! For receive a price of some' \
                     ' crypto use a keyboard or send me *a message with a name or a ticker* of a coin/token.'
 
-    bot.send_message(usr_chat_id, text_response, parse_mode="Markdown", reply_markup=reply_markup_p1)
+    context.bot.send_message(usr_chat_id, text_response, parse_mode="Markdown", reply_markup=reply_markup_p1)
 
 
 # bot's update error handler
 @run_async
-def error(bot, update, error_msg):
-    module_logger.warning('Update caused error "%s"', error)
+def error(update, context):
+    module_logger.warning('Update caused error "%s"', context.error)
 
     # TODO send a message for the admin with error from here
 
 
 # text messages handler for send user keyboard for all users
 @run_async
-def filter_text_input(bot, update):
+def filter_text_input(update, context):
 
     message_info(update)
 
-    usr_msg_text = update.effective_message.text
-    usr_chat_id = update.message.chat_id
+    usr_msg_text = update.message.text
+    usr_chat_id = update.effective_chat.id
 
     # string for response
     text_response = ''
@@ -62,16 +64,17 @@ def filter_text_input(bot, update):
     if text_response is not empty, bot send a response to user
     """
     if text_response:
-        bot.send_message(usr_chat_id, text_response, parse_mode="Markdown", reply_markup=dict_to_request['replymarkupresponse'])
+        context.bot.send_message(usr_chat_id, text_response,
+                                 parse_mode="Markdown", reply_markup=dict_to_request['replymarkupresponse'])
         module_logger.info("Had send a message to a channel %s", usr_chat_id)
 
     else:
-        module_logger.info("Don't send a message for had recieve the message %s", usr_msg_text)
+        module_logger.info("Don't send a message for had receive the message %s", usr_msg_text)
 
 
 # a handler for download the lists of coins from API agregators by job_queue of telegram.ext
 @run_async
-def download_api_coinslists_handler(bot, job):
+def download_api_coinslists_handler(context):
     """
     the function to download API from the agregators sites to local file
 
@@ -81,6 +84,8 @@ def download_api_coinslists_handler(bot, job):
     :param  job: job.context is a name of the site-agregator, which has been send from job_queue.run_repeating... method
     :type   job: Job
     """
+
+    job = context.job
 
     module_logger.info('Start a request to %s API', job.context)
 

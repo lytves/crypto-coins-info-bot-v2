@@ -10,7 +10,7 @@ def main():
     module_logger.info("Start the @CryptoCoinsInfoBot bot!")
 
     # create an object "bot"
-    updater = Updater(token=TOKEN_BOT)
+    updater = Updater(token=TOKEN_BOT, use_context=True)
     dispatcher = updater.dispatcher
 
     # bot's error handler

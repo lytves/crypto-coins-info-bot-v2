@@ -41,7 +41,7 @@ def command_info(update):
 def message_info(update):
 
     if update:
-        us_message = str(update.effective_message.text) if update.effective_message.text else 'None'
+        us_message = str(update.message.text) if update.message.text else 'None'
 
         usr_name = update.message.from_user.first_name
         if update.message.from_user.last_name:
@@ -63,7 +63,7 @@ def text_simple(usr_msg_text):
 
     from cryptocoinsinfo.parse_apis import parse_api_coinmarketcapjson, parse_api_cryptocomparejson
 
-    # for always work with a text in a uppercase
+    # always working with an uppercased text
     usr_msg_text = usr_msg_text.upper()
 
     menu_text_response = ''

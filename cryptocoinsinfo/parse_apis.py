@@ -8,7 +8,16 @@ from cryptocoinsinfo.config import *
 from cryptocoinsinfo.error_info_messages import *
 from cryptocoinsinfo.utils import module_logger
 
-locale.setlocale(locale.LC_NUMERIC, 'en_GB')
+# MACOS: 'en_GB', RASPBERRY: 'es_ES.utf8'
+try:
+    locale.setlocale(locale.LC_NUMERIC, 'es_ES.utf8')
+except Exception as e:
+    if hasattr(e, 'message'):
+        ex_msg = e.message
+    else:
+        ex_msg = e
+
+    module_logger.error('locale.setlocale EXCEPTION %s', ex_msg)
 
 
 def parse_api_coinmarketcapjson(message_ticker):
